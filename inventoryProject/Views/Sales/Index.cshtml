@@ -1,0 +1,104 @@
+﻿@model IEnumerable<inventoryProject.Models.Sale>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.sale_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.total_price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.discount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.net_total_price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.stock_status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.memo_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.coomments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customer.customer_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.store.store_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.product.product_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.sale_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.total_price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.discount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.net_total_price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.stock_status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.memo_no)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.coomments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customer.customer_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.store.store_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.product.product_name)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.sale_id }) |*@
+            @Html.ActionLink("Details", "Details", new { id=item.sale_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.sale_id })
+        </td>
+    </tr>
+}
+
+</table>

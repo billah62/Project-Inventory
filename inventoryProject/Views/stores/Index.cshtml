@@ -1,0 +1,51 @@
+﻿@model IEnumerable<inventoryProject.Models.store>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.store_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.store_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.manager_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.store_no)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.store_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.manager_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.store_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.store_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.store_id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,653 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StockManageModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="StockManageModelStoreContainer">
+    <EntitySet Name="customers" EntityType="StockManageModel.Store.customers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="produc_type" EntityType="StockManageModel.Store.produc_type" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="products" EntityType="StockManageModel.Store.products" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="purchases" EntityType="StockManageModel.Store.purchases" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sales" EntityType="StockManageModel.Store.Sales" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="stocks" EntityType="StockManageModel.Store.stocks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="stores" EntityType="StockManageModel.Store.stores" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="suppliers" EntityType="StockManageModel.Store.suppliers" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Sale_customer" Association="StockManageModel.Store.FK_Sale_customer">
+      <End Role="customer" EntitySet="customers" />
+      <End Role="Sale" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_product_product" Association="StockManageModel.Store.FK_product_product">
+      <End Role="produc_type" EntitySet="produc_type" />
+      <End Role="product" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_purchase_product" Association="StockManageModel.Store.FK_purchase_product">
+      <End Role="product" EntitySet="products" />
+      <End Role="purchase" EntitySet="purchases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sale_product" Association="StockManageModel.Store.FK_Sale_product">
+      <End Role="product" EntitySet="products" />
+      <End Role="Sale" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_stock_product" Association="StockManageModel.Store.FK_stock_product">
+      <End Role="product" EntitySet="products" />
+      <End Role="stock" EntitySet="stocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_purchase_store" Association="StockManageModel.Store.FK_purchase_store">
+      <End Role="store" EntitySet="stores" />
+      <End Role="purchase" EntitySet="purchases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_purchase_supplier" Association="StockManageModel.Store.FK_purchase_supplier">
+      <End Role="supplier" EntitySet="suppliers" />
+      <End Role="purchase" EntitySet="purchases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sale_store" Association="StockManageModel.Store.FK_Sale_store">
+      <End Role="store" EntitySet="stores" />
+      <End Role="Sale" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_stock_store" Association="StockManageModel.Store.FK_stock_store">
+      <End Role="store" EntitySet="stores" />
+      <End Role="stock" EntitySet="stocks" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="customers">
+    <Key>
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="customer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customer_name" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="mobile" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="address" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="produc_type">
+    <Key>
+      <PropertyRef Name="product_type_id" />
+    </Key>
+    <Property Name="product_type_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_type_name" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_name" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="product_type_id" Type="int" Nullable="true" />
+    <Property Name="buying_price" Type="decimal" Nullable="true" Precision="18" Scale="8" />
+    <Property Name="selling_price" Type="decimal" Nullable="true" Precision="18" Scale="8" />
+    <Property Name="photo" Type="varchar" Nullable="true" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="purchases">
+    <Key>
+      <PropertyRef Name="purchase_id" />
+    </Key>
+    <Property Name="purchase_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_id" Type="int" Nullable="true" />
+    <Property Name="supplier_id" Type="int" Nullable="true" />
+    <Property Name="store_id" Type="int" Nullable="true" />
+    <Property Name="purchase_date" Type="datetime" Nullable="true" />
+    <Property Name="unit_price" Type="decimal" Nullable="true" Precision="18" Scale="8" />
+    <Property Name="quantity" Type="int" Nullable="true" />
+    <Property Name="total_price" Type="decimal" Nullable="true" Precision="18" Scale="8" />
+    <Property Name="vat" Type="decimal" Nullable="true" Precision="18" Scale="8" />
+    <Property Name="grand_total_price" Type="decimal" Nullable="true" Precision="18" Scale="8" />
+    <Property Name="stock_status" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="memo_no" Type="int" Nullable="true" />
+    <Property Name="coomments" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sales">
+    <Key>
+      <PropertyRef Name="sale_id" />
+    </Key>
+    <Property Name="sale_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_id" Type="int" Nullable="true" />
+    <Property Name="customer_id" Type="int" Nullable="true" />
+    <Property Name="store_id" Type="int" Nullable="true" />
+    <Property Name="sale_date" Type="datetime" Nullable="true" />
+    <Property Name="rate" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="quantity" Type="int" Nullable="true" />
+    <Property Name="total_price" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="vat" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="discount" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="net_total_price" Type="decimal" Nullable="true" Precision="18" Scale="2" />
+    <Property Name="stock_status" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="memo_no" Type="int" Nullable="true" />
+    <Property Name="coomments" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="stocks">
+    <Key>
+      <PropertyRef Name="stock_id" />
+    </Key>
+    <Property Name="stock_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_id" Type="int" Nullable="true" />
+    <Property Name="store_id" Type="int" Nullable="true" />
+    <Property Name="quantity" Type="int" Nullable="true" />
+    <Property Name="status" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="stores">
+    <Key>
+      <PropertyRef Name="store_id" />
+    </Key>
+    <Property Name="store_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="store_no" Type="int" Nullable="true" />
+    <Property Name="store_name" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="address" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="manager_name" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="suppliers">
+    <Key>
+      <PropertyRef Name="supplier_id" />
+    </Key>
+    <Property Name="supplier_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="supplier_name" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="mobile" Type="decimal" Nullable="true" Precision="18" Scale="0" />
+    <Property Name="address" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Sale_customer">
+    <End Role="customer" Type="StockManageModel.Store.customers" Multiplicity="0..1" />
+    <End Role="Sale" Type="StockManageModel.Store.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="customer_id" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_product_product">
+    <End Role="produc_type" Type="StockManageModel.Store.produc_type" Multiplicity="0..1" />
+    <End Role="product" Type="StockManageModel.Store.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="produc_type">
+        <PropertyRef Name="product_type_id" />
+      </Principal>
+      <Dependent Role="product">
+        <PropertyRef Name="product_type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_purchase_product">
+    <End Role="product" Type="StockManageModel.Store.products" Multiplicity="0..1" />
+    <End Role="purchase" Type="StockManageModel.Store.purchases" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="purchase">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sale_product">
+    <End Role="product" Type="StockManageModel.Store.products" Multiplicity="0..1" />
+    <End Role="Sale" Type="StockManageModel.Store.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_stock_product">
+    <End Role="product" Type="StockManageModel.Store.products" Multiplicity="0..1" />
+    <End Role="stock" Type="StockManageModel.Store.stocks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="stock">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_purchase_store">
+    <End Role="store" Type="StockManageModel.Store.stores" Multiplicity="0..1" />
+    <End Role="purchase" Type="StockManageModel.Store.purchases" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="store">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="purchase">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_purchase_supplier">
+    <End Role="supplier" Type="StockManageModel.Store.suppliers" Multiplicity="0..1" />
+    <End Role="purchase" Type="StockManageModel.Store.purchases" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="supplier">
+        <PropertyRef Name="supplier_id" />
+      </Principal>
+      <Dependent Role="purchase">
+        <PropertyRef Name="supplier_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sale_store">
+    <End Role="store" Type="StockManageModel.Store.stores" Multiplicity="0..1" />
+    <End Role="Sale" Type="StockManageModel.Store.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="store">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_stock_store">
+    <End Role="store" Type="StockManageModel.Store.stores" Multiplicity="0..1" />
+    <End Role="stock" Type="StockManageModel.Store.stocks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="store">
+        <PropertyRef Name="store_id" />
+      </Principal>
+      <Dependent Role="stock">
+        <PropertyRef Name="store_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StockManageModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="customer_id" />
+          </Key>
+          <Property Name="customer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customer_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Sales" Relationship="Self.FK_Sale_customer" FromRole="customer" ToRole="Sale" />
+        </EntityType>
+        <EntityType Name="produc_type">
+          <Key>
+            <PropertyRef Name="product_type_id" />
+          </Key>
+          <Property Name="product_type_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_type_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="products" Relationship="Self.FK_product_product" FromRole="produc_type" ToRole="product" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="product_type_id" Type="Int32" />
+          <Property Name="buying_price" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="selling_price" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="photo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="produc_type" Relationship="Self.FK_product_product" FromRole="product" ToRole="produc_type" />
+          <NavigationProperty Name="purchases" Relationship="Self.FK_purchase_product" FromRole="product" ToRole="purchase" />
+          <NavigationProperty Name="Sales" Relationship="Self.FK_Sale_product" FromRole="product" ToRole="Sale" />
+          <NavigationProperty Name="stocks" Relationship="Self.FK_stock_product" FromRole="product" ToRole="stock" />
+        </EntityType>
+        <EntityType Name="purchase">
+          <Key>
+            <PropertyRef Name="purchase_id" />
+          </Key>
+          <Property Name="purchase_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="Int32" />
+          <Property Name="supplier_id" Type="Int32" />
+          <Property Name="store_id" Type="Int32" />
+          <Property Name="purchase_date" Type="DateTime" Precision="0" />
+          <Property Name="unit_price" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="total_price" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="vat" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="grand_total_price" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="stock_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="memo_no" Type="Int32" />
+          <Property Name="coomments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="product" Relationship="Self.FK_purchase_product" FromRole="purchase" ToRole="product" />
+          <NavigationProperty Name="store" Relationship="Self.FK_purchase_store" FromRole="purchase" ToRole="store" />
+          <NavigationProperty Name="supplier" Relationship="Self.FK_purchase_supplier" FromRole="purchase" ToRole="supplier" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="sale_id" />
+          </Key>
+          <Property Name="sale_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="Int32" />
+          <Property Name="customer_id" Type="Int32" />
+          <Property Name="store_id" Type="Int32" />
+          <Property Name="sale_date" Type="DateTime" Precision="0" />
+          <Property Name="rate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="total_price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="vat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="discount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="net_total_price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="stock_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="memo_no" Type="Int32" />
+          <Property Name="coomments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_Sale_customer" FromRole="Sale" ToRole="customer" />
+          <NavigationProperty Name="product" Relationship="Self.FK_Sale_product" FromRole="Sale" ToRole="product" />
+          <NavigationProperty Name="store" Relationship="Self.FK_Sale_store" FromRole="Sale" ToRole="store" />
+        </EntityType>
+        <EntityType Name="stock">
+          <Key>
+            <PropertyRef Name="stock_id" />
+          </Key>
+          <Property Name="stock_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="Int32" />
+          <Property Name="store_id" Type="Int32" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="product" Relationship="Self.FK_stock_product" FromRole="stock" ToRole="product" />
+          <NavigationProperty Name="store" Relationship="Self.FK_stock_store" FromRole="stock" ToRole="store" />
+        </EntityType>
+        <EntityType Name="store">
+          <Key>
+            <PropertyRef Name="store_id" />
+          </Key>
+          <Property Name="store_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="store_no" Type="Int32" />
+          <Property Name="store_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="manager_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="purchases" Relationship="Self.FK_purchase_store" FromRole="store" ToRole="purchase" />
+          <NavigationProperty Name="Sales" Relationship="Self.FK_Sale_store" FromRole="store" ToRole="Sale" />
+          <NavigationProperty Name="stocks" Relationship="Self.FK_stock_store" FromRole="store" ToRole="stock" />
+        </EntityType>
+        <EntityType Name="supplier">
+          <Key>
+            <PropertyRef Name="supplier_id" />
+          </Key>
+          <Property Name="supplier_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="supplier_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mobile" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="purchases" Relationship="Self.FK_purchase_supplier" FromRole="supplier" ToRole="purchase" />
+        </EntityType>
+        <Association Name="FK_Sale_customer">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_product_product">
+          <End Role="produc_type" Type="Self.produc_type" Multiplicity="0..1" />
+          <End Role="product" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="produc_type">
+              <PropertyRef Name="product_type_id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="product_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_purchase_product">
+          <End Role="product" Type="Self.product" Multiplicity="0..1" />
+          <End Role="purchase" Type="Self.purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="purchase">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_product">
+          <End Role="product" Type="Self.product" Multiplicity="0..1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stock_product">
+          <End Role="product" Type="Self.product" Multiplicity="0..1" />
+          <End Role="stock" Type="Self.stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="stock">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_purchase_store">
+          <End Role="store" Type="Self.store" Multiplicity="0..1" />
+          <End Role="purchase" Type="Self.purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="store_id" />
+            </Principal>
+            <Dependent Role="purchase">
+              <PropertyRef Name="store_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_purchase_supplier">
+          <End Role="supplier" Type="Self.supplier" Multiplicity="0..1" />
+          <End Role="purchase" Type="Self.purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="supplier">
+              <PropertyRef Name="supplier_id" />
+            </Principal>
+            <Dependent Role="purchase">
+              <PropertyRef Name="supplier_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_store">
+          <End Role="store" Type="Self.store" Multiplicity="0..1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="store_id" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="store_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stock_store">
+          <End Role="store" Type="Self.store" Multiplicity="0..1" />
+          <End Role="stock" Type="Self.stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="store">
+              <PropertyRef Name="store_id" />
+            </Principal>
+            <Dependent Role="stock">
+              <PropertyRef Name="store_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StockManageEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="customers" EntityType="Self.customer" />
+          <EntitySet Name="produc_type" EntityType="Self.produc_type" />
+          <EntitySet Name="products" EntityType="Self.product" />
+          <EntitySet Name="purchases" EntityType="Self.purchase" />
+          <EntitySet Name="Sales" EntityType="Self.Sale" />
+          <EntitySet Name="stocks" EntityType="Self.stock" />
+          <EntitySet Name="stores" EntityType="Self.store" />
+          <EntitySet Name="suppliers" EntityType="Self.supplier" />
+          <AssociationSet Name="FK_Sale_customer" Association="Self.FK_Sale_customer">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_product_product" Association="Self.FK_product_product">
+            <End Role="produc_type" EntitySet="produc_type" />
+            <End Role="product" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_purchase_product" Association="Self.FK_purchase_product">
+            <End Role="product" EntitySet="products" />
+            <End Role="purchase" EntitySet="purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_product" Association="Self.FK_Sale_product">
+            <End Role="product" EntitySet="products" />
+            <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stock_product" Association="Self.FK_stock_product">
+            <End Role="product" EntitySet="products" />
+            <End Role="stock" EntitySet="stocks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_purchase_store" Association="Self.FK_purchase_store">
+            <End Role="store" EntitySet="stores" />
+            <End Role="purchase" EntitySet="purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_purchase_supplier" Association="Self.FK_purchase_supplier">
+            <End Role="supplier" EntitySet="suppliers" />
+            <End Role="purchase" EntitySet="purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_store" Association="Self.FK_Sale_store">
+            <End Role="store" EntitySet="stores" />
+            <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stock_store" Association="Self.FK_stock_store">
+            <End Role="store" EntitySet="stores" />
+            <End Role="stock" EntitySet="stocks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="StockManageModelStoreContainer" CdmEntityContainer="StockManageEntities">
+    <EntitySetMapping Name="customers">
+      <EntityTypeMapping TypeName="IsTypeOf(StockManageModel.customer)">
+        <MappingFragment StoreEntitySet="customers">
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="address" ColumnName="address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="produc_type">
+      <EntityTypeMapping TypeName="IsTypeOf(StockManageModel.produc_type)">
+        <MappingFragment StoreEntitySet="produc_type">
+          <ScalarProperty Name="product_type_id" ColumnName="product_type_id" />
+          <ScalarProperty Name="product_type_name" ColumnName="product_type_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="IsTypeOf(StockManageModel.product)">
+        <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="product_type_id" ColumnName="product_type_id" />
+          <ScalarProperty Name="buying_price" ColumnName="buying_price" />
+          <ScalarProperty Name="selling_price" ColumnName="selling_price" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="purchases">
+      <EntityTypeMapping TypeName="IsTypeOf(StockManageModel.purchase)">
+        <MappingFragment StoreEntitySet="purchases">
+          <ScalarProperty Name="purchase_id" ColumnName="purchase_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="purchase_date" ColumnName="purchase_date" />
+          <ScalarProperty Name="unit_price" ColumnName="unit_price" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="total_price" ColumnName="total_price" />
+          <ScalarProperty Name="vat" ColumnName="vat" />
+          <ScalarProperty Name="grand_total_price" ColumnName="grand_total_price" />
+          <ScalarProperty Name="stock_status" ColumnName="stock_status" />
+          <ScalarProperty Name="memo_no" ColumnName="memo_no" />
+          <ScalarProperty Name="coomments" ColumnName="coomments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sales">
+      <EntityTypeMapping TypeName="IsTypeOf(StockManageModel.Sale)">
+        <MappingFragment StoreEntitySet="Sales">
+          <ScalarProperty Name="sale_id" ColumnName="sale_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="sale_date" ColumnName="sale_date" />
+          <ScalarProperty Name="rate" ColumnName="rate" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="total_price" ColumnName="total_price" />
+          <ScalarProperty Name="vat" ColumnName="vat" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="net_total_price" ColumnName="net_total_price" />
+          <ScalarProperty Name="stock_status" ColumnName="stock_status" />
+          <ScalarProperty Name="memo_no" ColumnName="memo_no" />
+          <ScalarProperty Name="coomments" ColumnName="coomments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="stocks">
+      <EntityTypeMapping TypeName="IsTypeOf(StockManageModel.stock)">
+        <MappingFragment StoreEntitySet="stocks">
+          <ScalarProperty Name="stock_id" ColumnName="stock_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="stores">
+      <EntityTypeMapping TypeName="IsTypeOf(StockManageModel.store)">
+        <MappingFragment StoreEntitySet="stores">
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="store_no" ColumnName="store_no" />
+          <ScalarProperty Name="store_name" ColumnName="store_name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="manager_name" ColumnName="manager_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="suppliers">
+      <EntityTypeMapping TypeName="IsTypeOf(StockManageModel.supplier)">
+        <MappingFragment StoreEntitySet="suppliers">
+          <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+          <ScalarProperty Name="supplier_name" ColumnName="supplier_name" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="address" ColumnName="address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

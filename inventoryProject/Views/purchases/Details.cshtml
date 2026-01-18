@@ -1,0 +1,112 @@
+﻿@model inventoryProject.Models.purchase
+
+@{
+    ViewBag.Title = "Details";
+}
+<h2>Details</h2>
+
+<div>
+    <h4>purchase</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.purchase_date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.purchase_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.unit_price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.unit_price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.total_price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.total_price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.grand_total_price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.grand_total_price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stock_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stock_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.memo_no)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.memo_no)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.coomments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.coomments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.product.product_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.product.product_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.store.store_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.store.store_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.supplier.supplier_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.supplier.supplier_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.purchase_id }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>

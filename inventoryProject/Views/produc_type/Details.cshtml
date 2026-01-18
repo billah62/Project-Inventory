@@ -1,0 +1,26 @@
+﻿@model inventoryProject.Models.produc_type
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>produc_type</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.product_type_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.product_type_name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.product_type_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

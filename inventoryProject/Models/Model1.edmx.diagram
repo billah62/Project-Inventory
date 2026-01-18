@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="efc010deb2d5424792249dfca6a2b857" Name="Diagram1">
+        <EntityTypeShape EntityType="StockManageModel.customer" Width="1.5" PointX="6" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManageModel.produc_type" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManageModel.product" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManageModel.purchase" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManageModel.Sale" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManageModel.stock" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManageModel.store" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockManageModel.supplier" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <AssociationConnector Association="StockManageModel.FK_Sale_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManageModel.FK_product_product" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManageModel.FK_purchase_product" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManageModel.FK_Sale_product" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManageModel.FK_stock_product" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManageModel.FK_purchase_store" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManageModel.FK_purchase_supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManageModel.FK_Sale_store" ManuallyRouted="false" />
+        <AssociationConnector Association="StockManageModel.FK_stock_store" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
